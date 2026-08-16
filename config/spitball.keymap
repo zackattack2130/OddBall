@@ -26,7 +26,6 @@
         };
 
         layer_1 {
-            display-name = "Layer 1";
             bindings = <
                  &trans           &trans           &trans              &kp BACKSPACE  &kp ENTER
 &kp CAPSLOCK     &trans           &kp UP_ARROW     &trans              &trans         &trans
@@ -43,7 +42,6 @@
         };
 
         layer_2 {
-            display-name = "Scroll";
             bindings = <
            &trans  &trans  &trans  &trans  &trans
 &trans     &trans  &trans  &trans  &trans  &trans
@@ -61,10 +59,11 @@
     };
 };
 
-/* Trackball becomes a scroll wheel while Layer 2 is active */
-&trackball_listener {
-    scroller {
-        layers = <2>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+/ {
+    trackball_listener {
+        scroller {
+            layers = <2>;
+            input-processors = <&zip_xy_to_scroll_mapper>;
+        };
     };
 };
