@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <input/processors.dtsi>
 
 / {
     keymap {
@@ -25,6 +26,7 @@
         };
 
         layer_1 {
+            display-name = "Layer 1";
             bindings = <
                  &trans           &trans           &trans              &kp BACKSPACE  &kp ENTER
 &kp CAPSLOCK     &trans           &kp UP_ARROW     &trans              &trans         &trans
@@ -41,6 +43,7 @@
         };
 
         layer_2 {
+            display-name = "Scroll";
             bindings = <
            &trans  &trans  &trans  &trans  &trans
 &trans     &trans  &trans  &trans  &trans  &trans
@@ -55,5 +58,13 @@
 &mkp MCLK
             >;
         };
+    };
+};
+
+/* Trackball becomes a scroll wheel while Layer 2 is active */
+&trackball_listener {
+    scroller {
+        layers = <2>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
     };
 };
