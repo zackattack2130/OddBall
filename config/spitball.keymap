@@ -59,11 +59,20 @@
     };
 };
 
-/ {
-    trackball_listener {
-        scroller {
-            layers = <2>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
-        };
+/*
+ * PMW3610 SCROLL MODE
+ *
+ * The PMW3610 is physically on the right peripheral.
+ * input_split_right0 sends its movement to the left/central.
+ * input_listener_right0 receives those events on the central.
+ *
+ * When Layer 2 is active, convert X/Y mouse movement
+ * into horizontal/vertical scrolling.
+ */
+
+&input_listener_right0 {
+    scroller {
+        layers = <2>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
     };
 };
