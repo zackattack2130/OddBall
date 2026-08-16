@@ -1,0 +1,70 @@
+#include "spitball.dtsi"
+
+/ {
+    kscan1: kscan1 {
+        compatible = "zmk,kscan-gpio-matrix";
+                diode-direction = "col2row";
+        wakeup-source;
+
+        col-gpios
+            = <&pro_micro 20 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 16 GPIO_ACTIVE_HIGH>
+            ;
+
+        row-gpios
+            = <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+    };
+};
+
+/ {
+    kscan2: kscan2 {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        input-gpios
+            = <&pro_micro 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    };
+};
+
+/ {
+    kscan0: kscan0 {
+        compatible = "zmk,kscan-composite";
+        rows = <5>;
+        columns = <7>;
+
+        kscan1 {
+            col-offset = <0>;
+            kscan = <&kscan1>;
+        };
+        kscan2 {
+            col-offset = <6>;
+            kscan = <&kscan2>;
+        };
+    };
+};
+
+&matrix_transform0 {
+    row-offset = <5>;
+};
+
+&physical_layout_spitball {
+    kscan = <&kscan0>;
+};
+// == Input devices ==
+// Enabling input-split for its own input devices
+// Adding input devices and assigning them to input-split
+&input_split_right0 {
+    status = "okay";
+    device = <&input_device_right0>;
+};
+

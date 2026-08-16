@@ -1,0 +1,5 @@
+config SHIELD_SPITBALL_LEFT
+    def_bool $(shields_list_contains,spitball_left)
+
+config SHIELD_SPITBALL_RIGHT
+    def_bool $(shields_list_contains,spitball_right)
