@@ -2,6 +2,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
+#include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
 
 / {
@@ -69,7 +70,13 @@
  *   Trackball = scroll
  *
  * Scroll speed:
- *   1 / 3 of normal mapped scroll rate
+ *   1/3
+ *
+ * Vertical scroll:
+ *   Inverted
+ *
+ * Horizontal scroll:
+ *   Normal
  */
 
 &input_listener_right0 {
@@ -77,6 +84,7 @@
         layers = <2>;
         input-processors = <
             &zip_xy_to_scroll_mapper
+            &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
             &zip_scroll_scaler 1 3
         >;
     };
