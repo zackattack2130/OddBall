@@ -44,16 +44,16 @@
 
         layer_2 {
             bindings = <
-           &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
-&trans     &trans  &trans  &trans  &trans  &trans
+           &bootloader  &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &bootloader
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
+&trans     &trans       &trans  &trans  &trans  &trans
 &mkp MCLK
             >;
         };
@@ -77,6 +77,10 @@
  *
  * Horizontal scroll:
  *   Normal
+ *
+ * Layer 2 bootloader:
+ *   Left 1 = Left half bootloader
+ *   Right 0 = Right half bootloader
  */
 
 &input_listener_right0 {
